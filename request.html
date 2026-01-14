@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a Quote | Aqualis Pools</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #ffffff;
+      background: linear-gradient(135deg, #e0f7fa 0%, #007acc 25%, #002a45 50%, #007acc 75%, #e0f7fa 100%);
+      background-size: 400% 400%;
+      animation: backgroundShift 15s linear infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%) repeat;
+      background-size: 200% 200%;
+      animation: shimmerWaves 6s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes shimmerWaves {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      z-index: 1;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #ffffff;
+      color: #007acc;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .launch-note {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 20px auto 40px;
+      color: #ffffff;
+      text-align: center;
+      font-style: italic;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Request a Quote</h1>
+
+  <p class="launch-note">
+    
+
+  <form action="https://formspree.io/f/xldjvrnw" method="POST">
+    <input type="text" name="Name" placeholder="Full Name" required />
+    <input type="tel" name="Phone" placeholder="Phone Number" required />
+    <input type="email" name="Email" placeholder="Email Address" required />
+    <input type="text" name="Address" placeholder="Property Address" />
+    <input type="text" name="Timeline" placeholder="Ideal Build Timeline" />
+    <input type="text" name="Budget" placeholder="Estimated Budget Range" />
+    <textarea name="Message" placeholder="Tell us a bit about your project..."></textarea>
+    <input type="hidden" name="_redirect" value="https://aqualispools.com/thanks.html" />
+    <button type="submit">Submit Request</button>
+  </form>
+</body>
+</html>
