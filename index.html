@@ -93,9 +93,27 @@
       so you can make informed decisions with confidence.
     </p>
 
-    <div class="coming-soon">
-      Online scheduling coming soon
-    </div>
+    <section style="margin-top:50px;">
+  <h2 style="text-align:center; color:#5a3e24; font-weight:normal;">
+    Request an Inspection
+  </h2>
+
+  <form action="https://formspree.io/f/PASTE_NEW_ID_HERE" method="POST"
+        style="background:#ffffff; padding:24px; border-radius:12px; max-width:600px; margin:30px auto;">
+
+    <input type="hidden" name="Source" value="StoneMark Inspections Website" />
+
+    <input type="text" name="Name" placeholder="Full Name" required />
+    <input type="tel" name="Phone" placeholder="Phone Number" required />
+    <input type="email" name="Email" placeholder="Email Address" required />
+    <input type="text" name="Address" placeholder="Property Address" required />
+    <input type="text" name="Preferred Time" placeholder="Preferred Date / Time Window" />
+    <textarea name="Message" placeholder="Any concerns or notes about the property?"></textarea>
+
+    <button type="submit">Submit Request</button>
+  </form>
+</section>
+
 
     <footer>
       <p>
