@@ -6,6 +6,36 @@
   <title>StoneMark Inspections</title>
 
   <style>
+    .whisper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(194,168,117,0.45);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.whisper.left {
+  left: 24px;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.whisper.right {
+  right: 24px;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Hide whisper text on small screens */
+@media (max-width: 900px) {
+  .whisper {
+    display: none;
+  }
+}
     :root{
       --bg:#000000;
       --sandstone:#c2a875;
