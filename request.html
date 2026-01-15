@@ -3,119 +3,255 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order a Home Inspection | Aqualis Pools</title>
+  <title>Order a Home Inspection | StoneMark Inspections</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    :root{
+      --bg:#000000;
+      --sandstone:#c2a875;
+      --sandstone-2:#b79c68;
+      --ink:#111111;
+      --muted:rgba(194,168,117,0.70);
+      --field-bg:rgba(194,168,117,0.22);
+      --field-bg-focus:rgba(194,168,117,0.28);
+      --field-border:rgba(194,168,117,0.28);
+      --panel:rgba(0,0,0,0.55);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding: 44px 18px;
+      background: var(--bg);      /* ✅ no shimmer */
       color: #ffffff;
-      background: #000000;
-      background-size: 400% 400%;
-      animation: backgroundShift 15s linear infinite;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      text-align:center;
     }
 
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%) repeat;
-      background-size: 200% 200%;
-      animation: shimmerWaves 6s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes backgroundShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes shimmerWaves {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      z-index: 1;
-      color: #c2a875;
-    }
-
-    form {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      width: 100%;
-      z-index: 1;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    button {
-      padding: 12px 24px;
-      background-color: #ffffff;
-      color: #007acc;
-      border: none;
-      border-radius: 6px;
+    h1{
+      color: var(--sandstone);
+      font-size: clamp(2.0rem, 3.6vw, 2.6rem);
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
       font-weight: 600;
+    }
+
+    .subhead{
+      max-width: 640px;
+      margin: 0 auto 26px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    .wrap{
+      width:100%;
+      max-width: 560px;
+    }
+
+    form{
+      background: var(--panel);
+      border: 1px solid rgba(194,168,117,0.18);
+      border-radius: 14px;
+      padding: 26px 22px;
+      text-align:left;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    label{
+      display:block;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      color: rgba(255,255,255,0.85);
+      margin: 0 0 6px 2px;
+    }
+
+    .hint{
+      display:block;
+      margin-top: 6px;
+      font-size: 0.82rem;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.62);
+    }
+
+    input, textarea, select{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--field-border);
+      background: var(--field-bg);               /* ✅ sandstone fields */
+      color: rgba(255,255,255,0.92);
       font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder{
+      color: rgba(255,255,255,0.60);
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus{
+      border-color: rgba(194,168,117,0.55);
+      background: var(--field-bg-focus);
+    }
+
+    textarea{
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .row-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .row-3{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* ✅ “Floating text” submit (no box) */
+    .submit-row{
+      margin-top: 8px;
+      text-align:center;
+    }
+
+    button{
+      background: transparent;
+      border: none;
+      padding: 10px 0;
       cursor: pointer;
+
+      color: var(--sandstone);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+
+      transition: opacity 0.2s ease, letter-spacing 0.2s ease;
     }
 
-    button:hover {
-      opacity: 0.9;
+    button:hover{
+      opacity: 0.75;
+      letter-spacing: 0.16em;
     }
 
-    .launch-note {
-      font-size: 1rem;
-      max-width: 600px;
-      margin: 20px auto 40px;
-      color: #ffffff;
-      text-align: center;
-      font-style: italic;
+    button:focus-visible{
+      outline: 1px solid rgba(194,168,117,0.45);
+      outline-offset: 10px;
+      border-radius: 10px;
+    }
+
+    .fineprint{
+      margin-top: 14px;
+      text-align:center;
+      color: rgba(255,255,255,0.58);
+      font-size: 0.85rem;
       line-height: 1.6;
+    }
+
+    /* Mobile: keep it clean and readable */
+    @media (max-width: 640px){
+      form{ padding: 22px 18px; }
+      .row-2, .row-3{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
-  <h1>Order a Home Inspection</h1>
+  <div class="wrap">
+    <h1>Order a Home Inspection</h1>
 
-  <p class="launch-note">
-    
+    <p class="subhead">
+      Send a request and I’ll follow up to confirm availability, pricing, and any property details.
+      If you don’t have every detail yet, that’s completely fine — share what you can.
+    </p>
 
-  <form action="https://formspree.io/f/mojjvebp" method="POST">
-    <input type="text" name="Name" placeholder="Full Name" required />
-    <input type="tel" name="Phone" placeholder="Phone Number" required />
-    <input type="email" name="Email" placeholder="Email Address" required />
-    <input type="text" name="Address" placeholder="Property Address" />
-    <input type="text" name="Timeline" placeholder="Requested Inspection Date (or Date Range)" />
-    <textarea name="Message" placeholder="Comments/Message"></textarea>
-    <input type="hidden" name="_redirect" value="https://aqualispools.com/thanks.html" />
-    <button type="submit">Submit Request</button>
-  </form>
+    <form action="https://formspree.io/f/mojjvebp" method="POST">
+      <div class="grid">
+        <div>
+          <label for="name">Full Name</label>
+          <input id="name" type="text" name="Name" placeholder="Full Name" required />
+        </div>
+
+        <div class="row-2">
+          <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="tel" name="Phone" placeholder="Phone Number" required />
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="Email" placeholder="Email Address" required />
+          </div>
+        </div>
+
+        <div>
+          <label for="address">Property Address</label>
+          <input id="address" type="text" name="Address" placeholder="Property Address" />
+        </div>
+
+        <div>
+          <label for="timeline">Requested Inspection Date (or Date Range)</label>
+          <input id="timeline" type="text" name="Timeline" placeholder="e.g., Jan 22–24 or next week" />
+        </div>
+
+        <!-- ✅ New “if known” fields -->
+        <div class="row-3">
+          <div>
+            <label for="sqft">Sq. Footage (if known)</label>
+            <input id="sqft" type="text" name="SquareFootage" placeholder="e.g., 2,150" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+
+          <div>
+            <label for="beds">Bedrooms (if known)</label>
+            <input id="beds" type="text" name="Bedrooms" placeholder="e.g., 3" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+
+          <div>
+            <label for="year">Year Built (if known)</label>
+            <input id="year" type="text" name="YearBuilt" placeholder="e.g., 1998" inputmode="numeric" />
+            <span class="hint">It’s okay if you don’t know this yet.</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="message">Comments / Message</label>
+          <textarea id="message" name="Message" placeholder="Anything helpful: gate codes, occupied/vacant, concerns, crawl access, etc."></textarea>
+        </div>
+      </div>
+
+      <input type="hidden" name="_redirect" value="https://aqualispools.com/thanks.html" />
+
+      <div class="submit-row">
+        <button type="submit">Submit Request</button>
+      </div>
+
+      <div class="fineprint">
+        If you’re not sure on details like square footage, bedrooms, or year built, no problem —
+        I can confirm those when I follow up.
+      </div>
+    </form>
+  </div>
 </body>
 </html>
