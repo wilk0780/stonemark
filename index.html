@@ -15,6 +15,8 @@
 
     *{ box-sizing:border-box; margin:0; padding:0; }
 
+    html, body{ width:100%; overflow-x:hidden; }
+
     body{
       font-family: Georgia, "Times New Roman", serif;
       background: var(--bg);
@@ -40,14 +42,13 @@
       overflow: hidden; /* required for fades */
     }
 
-    /* ✅ Side fade: sandstone glow + slight edge vignette (actually visible) */
+    /* Side fade: sandstone glow */
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
       z-index:0;
       pointer-events:none;
-      /* sand glow from the sides inward */
       background: linear-gradient(
         to right,
         rgba(194,168,117,0.14) 0%,
@@ -57,17 +58,17 @@
         rgba(194,168,117,0.06) 88%,
         rgba(194,168,117,0.14) 100%
       );
-      mix-blend-mode: screen; /* keeps it “light” instead of muddy */
-      opacity: 0.55;          /* turn up/down if you want */
+      mix-blend-mode: screen;
+      opacity: 0.55;
     }
 
+    /* Gentle vignette */
     .hero::after{
       content:"";
       position:absolute;
       inset:0;
       z-index:1;
       pointer-events:none;
-      /* gentle vignette so the center reads as the focal point */
       background: radial-gradient(
         ellipse at center,
         rgba(0,0,0,0) 0%,
@@ -84,7 +85,7 @@
       z-index: 2;
     }
 
-    /* Side info (your horizontal layout stays as-is) */
+    /* Whisper text (keep exactly as you like it) */
     .whisper{
       position: absolute;
       top: 50%;
@@ -101,18 +102,11 @@
       user-select: none;
       white-space: nowrap;
       text-align: center;
-      z-index: 3; /* above fades */
+      z-index: 3;
     }
 
-    .whisper.left{
-      left: 65px;
-      transform: translateY(-50%);
-    }
-
-    .whisper.right{
-      right: 65px;
-      transform: translateY(-50%);
-    }
+    .whisper.left{ left: 65px; }
+    .whisper.right{ right: 65px; }
 
     /* CTA: text-only, forced color in all states */
     a.cta-link,
@@ -190,207 +184,15 @@
       text-underline-offset: 4px;
     }
 
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StoneMark Inspections</title>
-
-  <style>
-    :root{
-      --bg:#000000;
-      --sandstone:#c2a875;
-      --body-text:#9c8255;
-      --muted:#777777;
-    }
-
-    *{ box-sizing:border-box; margin:0; padding:0; }
-
-    body{
-      font-family: Georgia, "Times New Roman", serif;
-      background: var(--bg);
-      color: var(--body-text);
-      line-height: 1.6;
-    }
-
-    .container{
-      width:100%;
-      text-align:center;
-      padding: 24px 20px 40px;
-    }
-
-    /* HERO */
-    .hero{
-      position: relative;
-      min-height: 100vh;
-      display:flex;
-      flex-direction: column;
-      align-items:center;
-      justify-content:center;
-      gap: 16px;
-      overflow: hidden; /* required for fades */
-    }
-
-    /* ✅ Side fade: sandstone glow + slight edge vignette (actually visible) */
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      /* sand glow from the sides inward */
-      background: linear-gradient(
-        to right,
-        rgba(194,168,117,0.14) 0%,
-        rgba(194,168,117,0.06) 12%,
-        rgba(0,0,0,0.00) 32%,
-        rgba(0,0,0,0.00) 68%,
-        rgba(194,168,117,0.06) 88%,
-        rgba(194,168,117,0.14) 100%
-      );
-      mix-blend-mode: screen; /* keeps it “light” instead of muddy */
-      opacity: 0.55;          /* turn up/down if you want */
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:1;
-      pointer-events:none;
-      /* gentle vignette so the center reads as the focal point */
-      background: radial-gradient(
-        ellipse at center,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) 48%,
-        rgba(0,0,0,0.45) 82%,
-        rgba(0,0,0,0.75) 100%
-      );
-      opacity: 0.60;
-    }
-
-    /* Ensure actual content sits above fades */
-    .hero > *{
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Side info (your horizontal layout stays as-is) */
-    .whisper{
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: Georgia, "Times New Roman", serif;
-
-      font-size: 1.5rem;
-      letter-spacing: 0.18em;
-      line-height: 2.2;
-      text-transform: uppercase;
-
-      color: rgba(194,168,117,0.55);
-      pointer-events: none;
-      user-select: none;
-      white-space: nowrap;
-      text-align: center;
-      z-index: 3; /* above fades */
-    }
-
-    .whisper.left{
-      left: 65px;
-      transform: translateY(-50%);
-    }
-
-    .whisper.right{
-      right: 65px;
-      transform: translateY(-50%);
-    }
-
-    /* CTA: text-only, forced color in all states */
-    a.cta-link,
-    a.cta-link:visited,
-    a.cta-link:hover,
-    a.cta-link:active{
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.25rem;
-      font-weight: normal;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-
-      color: var(--sandstone);
-      text-decoration: none;
-
-      display:inline-block;
-      padding: 6px 0;
-      transition: opacity 0.2s ease, letter-spacing 0.2s ease;
-      outline: none;
-      z-index: 4;
-    }
-
-    a.cta-link:hover{
-      opacity: 0.75;
-      letter-spacing: 0.14em;
-    }
-
-    a.cta-link:focus-visible{
-      text-decoration: underline;
-      text-underline-offset: 6px;
-      opacity: 0.9;
-    }
-
-    .logo{
-      display:block;
-      margin:0 auto;
-      max-width: 1500px;
-      width:100%;
-      height:auto;
-      z-index: 4;
-    }
-
-    .content{
-      padding-top: 48px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    h1{
-      font-size: 2.4rem;
-      margin-bottom: 22px;
-      color: var(--sandstone);
-      font-weight: normal;
-    }
-
-    p{
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto 20px;
-    }
-
-    footer{
-      margin-top: 80px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    footer a{
-      color: var(--sandstone);
-      text-decoration: none;
-    }
-
-    footer a:hover{
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-
-    /* ✅ MOBILE: make logo “large and in charge” */
+    /* ✅ MOBILE: center logo + make it fill the screen correctly (wide banner safe) */
     @media (max-width: 900px){
       .container{ padding: 16px 14px 28px; }
 
       .hero{
         min-height: 100vh;
-        /* less padding so the logo can dominate */
-        padding: 6vh 0 6vh;
+        padding: 7vh 0 6vh;
         gap: 12px;
+        overflow: visible; /* stop clipping wide logos on phones */
       }
 
       /* keep your side text hidden on mobile */
@@ -402,70 +204,21 @@
         letter-spacing: 0.09em;
       }
 
-      /* The dominance control: size by HEIGHT */
+      /* Make logo big by width and KEEP IT CENTERED */
       .logo{
-        height: 78vh;     /* <-- BIG. adjust 72–84vh to taste */
-        width: auto;
+        display:block;
+        margin: 0 auto;
+
+        width: 96vw;          /* dominate screen width */
         max-width: none;
-        max-height: 82vh;
+        height: auto;
+
+        transform: none;      /* remove any weird scaling drift */
       }
 
       h1{ font-size: 2.0rem; }
       p{ font-size: 1.05rem; }
     }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-
-    <section class="hero">
-      <div class="whisper left">
-        LICENSED<br>
-        INSURED<br>
-        PROFESSIONAL<br>
-      </div>
-
-      <div class="whisper right">
-        SERVING<br>
-        WESTERN KENTUCKY<br>
-        EST. 2025
-      </div>
-
-      <a href="request.html" class="cta-link">Order a Home Inspection</a>
-
-      <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
-    </section>
-
-    <section class="content">
-      <h1>Welcome to StoneMark Inspections</h1>
-
-      <p>
-        StoneMark Inspections provides professional, thorough home inspections
-        with a focus on clarity, accuracy, and practical guidance.
-      </p>
-
-      <p>
-        Whether you are buying, selling, or simply seeking peace of mind,
-        our goal is to give you a clear understanding of a home’s condition
-        so you can make informed decisions with confidence.
-      </p>
-
-      <footer>
-        <p>
-          © <span id="year"></span> StoneMark Inspections<br />
-          <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a>
-        </p>
-      </footer>
-    </section>
-
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
   </style>
 </head>
 
