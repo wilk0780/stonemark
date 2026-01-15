@@ -66,15 +66,30 @@
     }
 
     .cta-link {
-  display: inline-block;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 18px;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--sandstone);
+
+  color: #c2a875;
   text-decoration: none;
-  transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+
+  transition: opacity 0.2s ease;
 }
+
+/* kill purple visited links */
+.cta-link:visited {
+  color: #c2a875;
+}
+
+.cta-link:hover {
+  opacity: 0.75;
+}
+
 
 .cta-link:hover {
   opacity: 0.75;
