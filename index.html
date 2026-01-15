@@ -151,11 +151,17 @@
     }
 
     /* Mobile: logo first, CTA just above it, then scroll down for content */
-    @media (max-width: 1500px){
-      .logo{
-  width: 120%;
-  max-width: none;
+    @media (max-width: 900px){
+      /* Mobile: keep logo centered but visually bigger */
+.hero { overflow: hidden; }
+
+.logo{
+  width: 100%;
+  max-width: 1500px;
+  transform: scale(1.18);
+  transform-origin: center center;
 }
+
       .container{ padding: 18px 16px 32px; }
       .hero{ min-height: auto; padding-top: 18px; padding-bottom: 10px; }
       a.cta-link, a.cta-link:visited, a.cta-link:hover, a.cta-link:active{
