@@ -6,45 +6,9 @@
   <title>StoneMark Inspections</title>
 
   <style>
-    .whisper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 1.5rem;          /* BIGGER */
-  letter-spacing: 0.18em;      /* calmer */
-  line-height: 2.2;            /* vertical breathing room */
-  text-transform: uppercase;
-
-  color: rgba(194,168,117,0.55);  /* more presence */
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.whisper.left {
-  left: 65px;
-  transform: translateY(-50%) ;
-}
-
-.whisper.right {
-  right: 65px;
-  transform: translateY(-50%) ;
-}
-
-/* Hide on mobile */
-@media (max-width: 900px) {
-  .whisper {
-    display: none;
-  }
-}
-
     :root{
       --bg:#000000;
       --sandstone:#c2a875;
-      --sandstone-dim:#b79c68;
       --body-text:#9c8255;
       --muted:#777777;
     }
@@ -64,19 +28,69 @@
       padding: 24px 20px 40px;
     }
 
-    /* HERO: logo dominates first view */
+    /* HERO */
     .hero{
-  position: relative;   /* ← THIS IS REQUIRED */
-  min-height: 100vh;
-  display:flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  gap: 16px;
-}
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content:center;
+      gap: 16px;
+      overflow: hidden; /* needed for the side fade */
+    }
 
+    /* Light side fade (vignette) */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 45%,
+        rgba(0,0,0,0.35) 75%,
+        rgba(0,0,0,0.70) 100%
+      );
+    }
 
-    /* TEXT-ONLY CTA (forced, no purple, no tiny) */
+    /* Make hero children render above the fade */
+    .hero > *{
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Side info (your horizontal layout) */
+    .whisper{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.18em;
+      line-height: 2.2;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.55);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      text-align: center;
+      z-index: 2; /* above fade */
+    }
+
+    .whisper.left{
+      left: 65px;
+      transform: translateY(-50%);
+    }
+
+    .whisper.right{
+      right: 65px;
+      transform: translateY(-50%);
+    }
+
+    /* CTA (text-only, never purple) */
     a.cta-link,
     a.cta-link:visited,
     a.cta-link:hover,
@@ -86,14 +100,13 @@
       font-weight: normal;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-
       color: var(--sandstone);
       text-decoration: none;
-
       display:inline-block;
       padding: 6px 0;
       transition: opacity 0.2s ease, letter-spacing 0.2s ease;
       outline: none;
+      z-index: 3;
     }
 
     a.cta-link:hover{
@@ -113,6 +126,7 @@
       max-width: 1500px;
       width:100%;
       height:auto;
+      z-index: 3;
     }
 
     .content{
@@ -150,37 +164,35 @@
       text-underline-offset: 4px;
     }
 
-   @media (max-width: 900px){
+    /* MOBILE: make logo "large and in charge" + keep layout stable */
+    @media (max-width: 900px){
+      .container{ padding: 18px 16px 32px; }
 
-  .hero{
-    min-height: 100vh;
-    padding: 10vh 0 8vh;
-    overflow: hidden;
-  }
+      .hero{
+        min-height: 100vh;
+        padding: 10vh 0 8vh;
+      }
 
-  .cta-link{
-    font-size: 1.05rem;
-    margin-bottom: 14px;
-  }
+      /* Hide side info on mobile (you can change this to "opacity" if you want it faint) */
+      .whisper{ display:none; }
 
-  /* FORCE the logo to be tall/dominant on mobile */
-  .logo{
-    display: block;
-    margin: 0 auto;
+      a.cta-link{
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+        letter-spacing: 0.09em;
+      }
 
-    height: 62vh;      /* <-- THIS is the power move */
-    width: auto;       /* keep proportions */
-    max-width: none;   /* ignore desktop max-width */
-    max-height: 70vh;  /* safety cap */
-  }
+      /* Force visual dominance via height */
+      .logo{
+        height: 62vh;     /* increase to 68vh if needed */
+        width: auto;
+        max-width: none;
+        max-height: 72vh;
+      }
 
-  h1{ font-size: 2.0rem; }
-  p{ font-size: 1.05rem; }
-}
-
-
-
-     
+      h1{ font-size: 2.0rem; }
+      p{ font-size: 1.05rem; }
+    }
   </style>
 </head>
 
@@ -189,18 +201,17 @@
 
     <section class="hero">
       <div class="whisper left">
-  LICENSED<br>
-  INSURED<br>
-  PROFESSIONAL<br>
-</div>
+        LICENSED<br>
+        INSURED<br>
+        PROFESSIONAL<br>
+      </div>
 
-<div class="whisper right">
-  SERVING<br>
-  WESTERN KENTUCKY<br>
-  EST. 2025
-</div>
+      <div class="whisper right">
+        SERVING<br>
+        WESTERN KENTUCKY<br>
+        EST. 2025
+      </div>
 
-      <!-- CTA DIRECTLY ABOVE LOGO -->
       <a href="request.html" class="cta-link">Request an Inspection</a>
 
       <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
@@ -235,4 +246,3 @@
   </script>
 </body>
 </html>
-
