@@ -150,17 +150,37 @@
       text-underline-offset: 4px;
     }
 
-    /* Mobile: logo first, CTA just above it, then scroll down for content */
-    @media (max-width: 900px){
-      /* Mobile: keep logo centered but visually bigger */
-.hero { overflow: hidden; }
+    /* MOBILE: large, centered, dominant hero */
+@media (max-width: 900px){
 
-.logo{
-  width: 100%;
-  max-width: 1500px;
-  transform: scale(1.18);
-  transform-origin: center center;
+  .hero{
+    min-height: 100vh;
+    padding: 12vh 0 8vh;
+    overflow: hidden;
+  }
+
+  .cta-link{
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+  }
+
+  .logo{
+    width: 92vw;          /* THIS is the key */
+    max-width: none;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  h1{
+    font-size: 2.0rem;
+  }
+
+  p{
+    font-size: 1.05rem;
+  }
 }
+
 
       .container{ padding: 18px 16px 32px; }
       .hero{ min-height: auto; padding-top: 18px; padding-bottom: 10px; }
