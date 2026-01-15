@@ -1,1 +1,201 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoneMark Inspections</title>
+
+  <style>
+    :root {
+      --black: #000000;
+      --dark-brown: #5a3e24;
+      --charcoal: #2b2b2b;
+
+      /* Sandstone (tweak if you want lighter/darker) */
+      --sandstone: #c2a875;
+      --sandstone-hover: #b79c68;
+      --text-gold: #c2a875;
+      --body-text: #9c8255;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background-color: #000000;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 100%;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    /* HERO AREA */
+    .hero {
+      position: relative;
+      min-height: 100vh; /* keeps logo as the main “screen” */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto;
+      max-width: 1500px;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Desktop CTA beside the logo (always visible) */
+    .cta-float {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      text-align: right;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: var(--sandstone);
+      color: #000000;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .cta-button:hover {
+      background-color: var(--sandstone-hover);
+      transform: translateY(-1px);
+      opacity: 0.98;
+    }
+
+    /* CONTENT SECTION (desktop scroll content) */
+    .content {
+      padding: 40px 20px 0;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: var(--text-gold);
+      font-weight: normal;
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    footer {
+      margin-top: 80px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    footer a {
+      color: var(--sandstone);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 900px) {
+      /* Turn off the fixed “beside logo” CTA on smaller screens */
+      .cta-float {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;       /* logo first */
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      /* On mobile: logo first, then scroll a little to the CTA */
+      .mobile-cta {
+        display: block;
+        margin-top: 18px;
+      }
+
+      h1 {
+        font-size: 2.0rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* Desktop: hide the mobile CTA block */
+    .mobile-cta {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Desktop fixed CTA beside logo -->
+  <div class="cta-float">
+    <a href="request.html" class="cta-button">Request an Inspection</a>
+  </div>
+
+  <div class="container">
+
+    <!-- HERO: logo dominates first screen -->
+    <section class="hero">
+      <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
+
+      <!-- Mobile CTA appears under logo (so you scroll just a touch) -->
+      <div class="mobile-cta">
+        <a href="request.html" class="cta-button">Request an Inspection</a>
+      </div>
+    </section>
+
+    <section class="content">
+      <h1>Welcome to StoneMark Inspections</h1>
+
+      <p>
+        StoneMark Inspections provides professional, thorough home inspections
+        with a focus on clarity, accuracy, and practical guidance.
+      </p>
+
+      <p>
+        Whether you are buying, selling, or simply seeking peace of mind,
+        our goal is to give you a clear understanding of a home’s condition
+        so you can make informed decisions with confidence.
+      </p>
+
+      <footer>
+        <p>
+          © <span id="year"></span> StoneMark Inspections<br />
+          <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a>
+        </p>
+      </footer>
+    </section>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
