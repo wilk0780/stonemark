@@ -150,36 +150,34 @@
       text-underline-offset: 4px;
     }
 
-    /* MOBILE: large, centered, dominant hero */
-@media (max-width: 900px){
+   @media (max-width: 900px){
 
   .hero{
     min-height: 100vh;
-    padding: 12vh 0 8vh;
+    padding: 10vh 0 8vh;
     overflow: hidden;
   }
 
   .cta-link{
     font-size: 1.05rem;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
 
+  /* FORCE the logo to be tall/dominant on mobile */
   .logo{
-    width: 92vw;          /* THIS is the key */
-    max-width: none;
-    height: auto;
-    margin: 0 auto;
     display: block;
+    margin: 0 auto;
+
+    height: 62vh;      /* <-- THIS is the power move */
+    width: auto;       /* keep proportions */
+    max-width: none;   /* ignore desktop max-width */
+    max-height: 70vh;  /* safety cap */
   }
 
-  h1{
-    font-size: 2.0rem;
-  }
-
-  p{
-    font-size: 1.05rem;
-  }
+  h1{ font-size: 2.0rem; }
+  p{ font-size: 1.05rem; }
 }
+
 
 
       .container{ padding: 18px 16px 32px; }
