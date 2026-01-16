@@ -1,1 +1,305 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoneMark Inspections</title>
+
+  <style>
+    :root{
+      --bg:#000000;
+      --sandstone:#c2a875;
+      --body-text:#9c8255;
+      --muted:#777777;
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+
+    html, body{ width:100%; overflow-x:hidden; }
+
+    body{
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    .container{
+      width:100%;
+      text-align:center;
+      padding: 24px 20px 40px;
+    }
+
+    /* HERO */
+    .hero{
+      position: relative;
+      min-height: 100vh;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      justify-content:center;
+      gap: 1px;
+      overflow: hidden; /* required for fades */
+    }
+
+    /* Side fade: sandstone glow */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background: linear-gradient(
+        to right,
+        rgba(194,168,117,0.14) 0%,
+        rgba(194,168,117,0.06) 12%,
+        rgba(0,0,0,0.00) 32%,
+        rgba(0,0,0,0.00) 68%,
+        rgba(194,168,117,0.06) 88%,
+        rgba(194,168,117,0.14) 100%
+      );
+      mix-blend-mode: screen;
+      opacity: 0.55;
+    }
+
+    /* Gentle vignette */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0) 48%,
+        rgba(0,0,0,0.45) 82%,
+        rgba(0,0,0,0.75) 100%
+      );
+      opacity: 0.60;
+    }
+
+    /* Ensure actual content sits above fades */
+    .hero > *{
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Whisper text */
+    .whisper{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 1.5rem;
+      letter-spacing: 0.18em;
+      line-height: 2.2;
+      text-transform: uppercase;
+
+      color: rgba(194,168,117,0.55);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .whisper.left{ left: 65px; }
+    .whisper.right{ right: 65px; }
+
+    /* CTA link */
+    a.cta-link,
+    a.cta-link:visited,
+    a.cta-link:hover,
+    a.cta-link:active{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.25rem;
+      font-weight: normal;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+
+      color: var(--sandstone);
+      text-decoration: none;
+
+      display:inline-block;
+      padding: 6px 0;
+      transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+      outline: none;
+      z-index: 4;
+    }
+
+    a.cta-link:hover{
+      opacity: 0.75;
+      letter-spacing: 0.14em;
+    }
+
+    a.cta-link:focus-visible{
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      opacity: 0.9;
+    }
+
+    /* OR + Phone lines (desktop) */
+    .cta-or{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.10rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.70);
+      margin-top: 2px;
+    }
+
+    .cta-phone{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem; /* bigger than link */
+      letter-spacing: 0.06em;
+      text-transform: none;
+      color: var(--sandstone);
+      margin-top: 2px;
+    }
+
+    .logo{
+      display:block;
+      margin:0 auto;
+      max-width: 1500px;
+      width:100%;
+      height:auto;
+      z-index: 4;
+    }
+
+    .content{
+      padding-top: 24px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    h1{
+      font-size: 2.4rem;
+      margin-bottom: 22px;
+      color: var(--sandstone);
+      font-weight: normal;
+    }
+
+    p{
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+
+    footer{
+      margin-top: 80px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    footer a{
+      color: var(--sandstone);
+      text-decoration: none;
+    }
+
+    footer a:hover{
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* MOBILE ONLY */
+    @media (max-width: 900px){
+      .container{ padding: 10px 14px 18px; }
+
+      .hero{
+        min-height: auto;
+        padding: 10px 0 8px;
+        gap: 10px;
+        overflow: visible;
+      }
+
+      .whisper{ display:none; }
+
+      a.cta-link{
+        font-size: 1.05rem;
+        margin: 0;
+        letter-spacing: 0.09em;
+      }
+
+      .cta-or{
+        margin: 4px 0 0;
+        font-size: 0.95rem;
+      }
+
+      .cta-phone{
+        margin: 2px 0 0;
+        font-size: 1.25rem;
+      }
+
+      /* safest centering: size by parent width, not vw */
+      .logo{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .content{
+        padding-top: 18px;
+      }
+
+      h1{ font-size: 2.0rem; }
+      p{ font-size: 1.05rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <section class="hero">
+      <div class="whisper left">
+        LICENSED<br>
+        INSURED<br>
+        PROFESSIONAL<br>
+      </div>
+
+      <div class="whisper right">
+        SERVING<br>
+        WESTERN KENTUCKY<br>
+        EST. 2025
+      </div>
+
+      <a href="request.html" class="cta-link">Order a Home Inspection Online</a>
+      <div class="cta-or">OR</div>
+      <div class="cta-phone">Call or Text Kyle @ (270) 349-8237</div>
+
+      <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
+    </section>
+
+    <section class="content">
+      <h1>Welcome to StoneMark Inspections</h1>
+
+      <p>
+        StoneMark Inspections provides professional, thorough home inspections
+        with a focus on clarity, accuracy, and practical guidance.
+      </p>
+
+      <p>
+        Whether you are buying, selling, or simply seeking peace of mind,
+        our goal is to give you a clear understanding of a home’s condition
+        so you can make informed decisions with confidence.
+      </p>
+
+      <footer>
+        <p>
+          © <span id="year"></span> StoneMark Inspections<br />
+          <a href="mailto:kyle@stonemarkinspections.com">kyle@stonemarkinspections.com</a>
+        </p>
+      </footer>
+    </section>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
