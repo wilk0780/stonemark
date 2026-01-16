@@ -185,14 +185,15 @@
     }
 
    @media (max-width: 900px){
-  .container{ padding: 10px 14px 18px; }
-
-  .hero{
-    min-height: auto;           /* stop forcing full-screen height */
-    padding: 10px 0 8px;        /* tight vertical spacing */
-    gap: 10px;
-    overflow: visible;
+  .logo{
+    width: calc(100vw - 28px); /* 14px left + 14px right */
+    max-width: none;
+    height: auto;
+    margin: 0 auto;
+    display: block;
   }
+}
+
 
   .whisper{ display:none; }
 
