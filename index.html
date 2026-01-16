@@ -11,6 +11,8 @@
       --sandstone:#c2a875;
       --body-text:#9c8255;
       --muted:#777777;
+      --divider: rgba(194,168,117,0.22);
+      --chip: rgba(194,168,117,0.10);
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
@@ -39,10 +41,9 @@
       align-items:center;
       justify-content:center;
       gap: 1px;
-      overflow: hidden; /* required for fades */
+      overflow: hidden;
     }
 
-    /* Side fade: sandstone glow */
     .hero::before{
       content:"";
       position:absolute;
@@ -62,7 +63,6 @@
       opacity: 0.55;
     }
 
-    /* Gentle vignette */
     .hero::after{
       content:"";
       position:absolute;
@@ -79,24 +79,20 @@
       opacity: 0.60;
     }
 
-    /* Ensure actual content sits above fades */
     .hero > *{
       position: relative;
       z-index: 2;
     }
 
-    /* Whisper text */
     .whisper{
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       font-family: Georgia, "Times New Roman", serif;
-
       font-size: 1.5rem;
       letter-spacing: 0.18em;
       line-height: 2.2;
       text-transform: uppercase;
-
       color: rgba(194,168,117,0.55);
       pointer-events: none;
       user-select: none;
@@ -108,7 +104,6 @@
     .whisper.left{ left: 65px; }
     .whisper.right{ right: 65px; }
 
-    /* CTA link */
     a.cta-link,
     a.cta-link:visited,
     a.cta-link:hover,
@@ -118,10 +113,8 @@
       font-weight: normal;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-
       color: var(--sandstone);
       text-decoration: none;
-
       display:inline-block;
       padding: 6px 0;
       transition: opacity 0.2s ease, letter-spacing 0.2s ease;
@@ -140,7 +133,6 @@
       opacity: 0.9;
     }
 
-    /* OR + Phone lines (desktop) */
     .cta-or{
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1.10rem;
@@ -152,7 +144,7 @@
 
     .cta-phone{
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.45rem; /* bigger than link */
+      font-size: 1.45rem;
       letter-spacing: 0.06em;
       text-transform: none;
       color: var(--sandstone);
@@ -185,6 +177,71 @@
       font-size: 1.1rem;
       max-width: 700px;
       margin: 0 auto 20px;
+    }
+
+    /* NEW: section blocks */
+    .section{
+      max-width: 840px;
+      margin: 36px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .section h2{
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.82);
+      font-weight: normal;
+      margin-bottom: 14px;
+    }
+
+    .about{
+      display:flex;
+      gap: 22px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .about img{
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 1px solid rgba(194,168,117,0.25);
+    }
+
+    .about .about-text{
+      max-width: 640px;
+    }
+
+    .about .about-text p{
+      margin: 0 0 14px;
+      max-width: 640px;
+      text-align: left;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .chip{
+      display:inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--chip);
+      border: 1px solid rgba(194,168,117,0.18);
+      color: rgba(194,168,117,0.86);
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      text-transform: none;
+      white-space: nowrap;
     }
 
     footer{
@@ -232,7 +289,6 @@
         font-size: 1.25rem;
       }
 
-      /* safest centering: size by parent width, not vw */
       .logo{
         width: 100%;
         max-width: 100%;
@@ -246,6 +302,14 @@
 
       h1{ font-size: 2.0rem; }
       p{ font-size: 1.05rem; }
+
+      .about{
+        text-align: center;
+      }
+
+      .about .about-text p{
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -286,6 +350,57 @@
         our goal is to give you a clear understanding of a home’s condition
         so you can make informed decisions with confidence.
       </p>
+
+      <!-- ABOUT ME (PLACE IT HERE) -->
+      <section class="section" id="about">
+        <h2>About</h2>
+
+        <div class="about">
+          <!-- Swap this src to your headshot filename -->
+          <img src="kyle.jpg" alt="Kyle Wilkins" />
+
+          <div class="about-text">
+            <p>
+              Hi, I’m Kyle. I’m a licensed home inspector serving Western Kentucky.
+              StoneMark Inspections was built for clients who want clarity—what matters,
+              what doesn’t, and what to do next—without unnecessary noise.
+            </p>
+
+            <p>
+              My approach is simple: be thorough, document clearly, and communicate in plain language
+              so you can make decisions with confidence.
+            </p>
+          </div>
+        </div>
+
+        <div class="chips" aria-label="Credentials">
+          <span class="chip">Licensed • Kentucky</span>
+          <span class="chip">Insured • E&amp;O + General Liability</span>
+          <span class="chip">Serving • Western Kentucky</span>
+        </div>
+      </section>
+
+      <!-- REPORTING APPROACH (RIGHT AFTER ABOUT) -->
+      <section class="section" id="reporting">
+        <h2>Reporting Approach</h2>
+
+        <p>
+          Every inspection includes a same-day digital report with embedded photos,
+          system-by-system organization, and clear recommendations when action is needed.
+        </p>
+
+        <p>
+          Reports are designed to be readable and useful—highlighting items that matter
+          without overwhelming buyers or creating unnecessary alarm.
+        </p>
+
+        <div class="chips" aria-label="Report Features">
+          <span class="chip">Photo documented</span>
+          <span class="chip">Plain-language explanations</span>
+          <span class="chip">Actionable recommendations</span>
+          <span class="chip">Easy to share</span>
+        </div>
+      </section>
 
       <footer>
         <p>
