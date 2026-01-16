@@ -85,7 +85,7 @@
       z-index: 2;
     }
 
-    /* Whisper text (keep exactly as you like it) */
+    /* Whisper text */
     .whisper{
       position: absolute;
       top: 50%;
@@ -108,7 +108,7 @@
     .whisper.left{ left: 65px; }
     .whisper.right{ right: 65px; }
 
-    /* CTA: text-only, forced color in all states */
+    /* CTA link */
     a.cta-link,
     a.cta-link:visited,
     a.cta-link:hover,
@@ -138,6 +138,25 @@
       text-decoration: underline;
       text-underline-offset: 6px;
       opacity: 0.9;
+    }
+
+    /* OR + Phone lines (desktop) */
+    .cta-or{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.10rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(194,168,117,0.70);
+      margin-top: 2px;
+    }
+
+    .cta-phone{
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem; /* bigger than link */
+      letter-spacing: 0.06em;
+      text-transform: none;
+      color: var(--sandstone);
+      margin-top: 2px;
     }
 
     .logo{
@@ -184,85 +203,50 @@
       text-underline-offset: 4px;
     }
 
-   @media (max-width: 900px){
-  .container{ padding: 10px 14px 18px; }
+    /* MOBILE ONLY */
+    @media (max-width: 900px){
+      .container{ padding: 10px 14px 18px; }
 
-  .hero{
-    min-height: auto;           /* stop forcing full-screen height */
-    padding: 10px 0 8px;        /* tight vertical spacing */
-    gap: 10px;
-    overflow: visible;
-  }
+      .hero{
+        min-height: auto;
+        padding: 10px 0 8px;
+        gap: 10px;
+        overflow: visible;
+      }
 
-  .whisper{ display:none; }
+      .whisper{ display:none; }
 
-  a.cta-link{
-    font-size: 1.05rem;
-    margin: 0;                  /* remove extra top/bottom gaps */
-    letter-spacing: 0.09em;
-  }
+      a.cta-link{
+        font-size: 1.05rem;
+        margin: 0;
+        letter-spacing: 0.09em;
+      }
 
-  .cta-or{
-    margin: 4px 0 0;            /* tighter */
-  }
+      .cta-or{
+        margin: 4px 0 0;
+        font-size: 0.95rem;
+      }
 
-  .cta-phone{
-    margin: 2px 0 0;            /* tighter */
-    font-size: 1.25rem;         /* still bigger than link */
-  }
+      .cta-phone{
+        margin: 2px 0 0;
+        font-size: 1.25rem;
+      }
 
-  .logo{
-    width: 96vw;
-    max-width: none;
-    height: auto;
-    margin: 0 auto;
-  }
+      /* safest centering: size by parent width, not vw */
+      .logo{
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+      }
 
-  /* Pull the welcome section closer to the hero */
-  .content{
-    padding-top: 18px;          /* was 48px on desktop */
-  }
+      .content{
+        padding-top: 18px;
+      }
 
-  h1{ font-size: 2.0rem; }
-  p{ font-size: 1.05rem; }
-}
-
-
-
-  .whisper{ display:none; }
-
-  a.cta-link{
-    font-size: 1.05rem;
-    margin: 0;                  /* remove extra top/bottom gaps */
-    letter-spacing: 0.09em;
-  }
-
-  .cta-or{
-    margin: 4px 0 0;            /* tighter */
-  }
-
-  .cta-phone{
-    margin: 2px 0 0;            /* tighter */
-    font-size: 1.25rem;         /* still bigger than link */
-  }
-
-  .logo{
-    width: 96vw;
-    max-width: none;
-    height: auto;
-    margin: 0 auto;
-  }
-
-  /* Pull the welcome section closer to the hero */
-  .content{
-    padding-top: 18px;          /* was 48px on desktop */
-  }
-
-  h1{ font-size: 2.0rem; }
-  p{ font-size: 1.05rem; }
-}
-
-    
+      h1{ font-size: 2.0rem; }
+      p{ font-size: 1.05rem; }
+    }
   </style>
 </head>
 
@@ -283,15 +267,8 @@
       </div>
 
       <a href="request.html" class="cta-link">Order a Home Inspection Online</a>
-
-<div class="cta-or">OR</div>
-
-<div class="cta-link cta-phone">
-  Call or Text (270) 349-8237
-
-
-</div>
-
+      <div class="cta-or">OR</div>
+      <div class="cta-phone">Call or Text (270) 349-8237</div>
 
       <img src="logo.PNG" alt="StoneMark Inspections Logo" class="logo" />
     </section>
@@ -325,3 +302,4 @@
   </script>
 </body>
 </html>
+
